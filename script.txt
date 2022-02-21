@@ -1,0 +1,4 @@
+cd ./resources
+javac code.java
+java code >> output.txt
+
