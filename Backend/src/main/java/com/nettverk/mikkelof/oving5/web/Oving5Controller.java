@@ -12,11 +12,14 @@ import java.io.IOException;
 @CrossOrigin
 public class Oving5Controller {
     @PostMapping("/compileAndRun")
-    public String compileAndRun(@RequestBody String code) throws IOException {
-        FileWriter writer = new FileWriter("../resources/code.txt");
+    public void compileAndRun(@RequestBody String code) throws IOException, InterruptedException {
+        FileWriter writer = new FileWriter("../code.py");
         String codeToFile = code.substring(1, code.length() - 1);
         writer.write(codeToFile);
         writer.close();
-        return(code);
+        Runtime.getRuntime().exec("docker rmi python-boi").waitFor();
+        Runtime.getRuntime().exec("docker build -t python-boi ./NP-ving5");
+        Runtime.getRuntime().exec("docker run --rm python-boi");
+        Runtime.getRuntime().exec("docker cp python-boi:/output.txt ./NP-ving5/output.txt");
     }
 }
