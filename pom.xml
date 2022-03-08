@@ -8,13 +8,13 @@
 		<version>2.6.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.nettverk.mikkelof</groupId>
-	<artifactId>oving5</artifactId>
+	<groupId>com.example</groupId>
+	<artifactId>oblig5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>oving5</name>
+	<name>oblig5</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -27,6 +27,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>3.0.12.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
