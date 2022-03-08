@@ -23,13 +23,7 @@ public class Compiler {
 
         FileService fileService = new FileService();
 
-        File myFile = new File("src/docker/temp/code.cpp");
-
-        if (myFile.createNewFile()) {
-            System.out.println("New file is created");
-        } else {
-            System.err.println("Henrik why are you running?");
-        }
+        File myFile = new File("src/docker/temp/code.py");
 
         fileService.writeToFile(myFile, code.get("code"));
 
@@ -39,20 +33,20 @@ public class Compiler {
 
 
         // Runtime.getRuntime().exec("docker rmi cpp-compiler").waitFor();
-        Process process = Runtime.getRuntime().exec("docker build ./src/docker/ -t cpp-compiler");
+        Process process = Runtime.getRuntime().exec("docker build ./src/docker/ -t python-compiler");
         String buildError = new String(process.getErrorStream().readAllBytes(), StandardCharsets.UTF_8);
         System.out.println("builderror: " + buildError);
 
-        Process run = Runtime.getRuntime().exec("docker run --rm cpp-compiler");
+        Process run = Runtime.getRuntime().exec("docker run --rm python-compiler");
 
         String runError = new String(run.getErrorStream().readAllBytes(), StandardCharsets.UTF_8);
-        String runOutput = new String(run.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        String Output = new String(run.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
 
-        System.out.println("runoutput: " + runOutput);
+        System.out.println("output: " + Output);
 
         if (!runError.isBlank()) {
             return buildError + "\n" + runError;
         }
-        return runError + "\n" + runOutput;
+        return runError + "\n" + Output;
     }
 }
